@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BugTracker</title>
+    <style>
+        h1{
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <H1
+        >Aplicação para reportar erros de uma aplicação e salvar em uma planilha
+        no Google Driver</H1
+      >
+      <form name="myForm" method="post" onsubmit="return validateForm()">
+        <div class="form-group">
+          <label for="name">Nome:*</label>
+          <input type="text" id="name" name="name" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:*</label>
+          <input type="email" id="email" name="email" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="issueType">Classificação:*</label>
+          <select id="issueType" name="issueType" class="form-control">
+            <option value="">Selecione</option>
+            <option value="critical">Crítico</option>
+            <option value="bug">Falha</option>
+            <option value="enhamcement">Melhoria</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="HowToReproduce">Como reproduzir o erro:</label>
+          <input
+            type="text"
+            id="HowToReproduce"
+            name="HowToReproduce"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="expectedOuput">A saída Esperada:</label>
+          <textarea
+            type="text"
+            id="expectedOuput"
+            name="expectedOuput"
+            class="form-control"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="receivedOuput">A saída recebida:</label>
+          <textarea
+            type="text"
+            id="receivedOuput"
+            name="receivedOuput"
+            class="form-control"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="userAgent" id="userAgent" />
+          <input type="hidden" name="date" id="date" />
+        </div>
+        <button class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById("userAgent").value = window.navigator.userAgent;
+      document.getElementById("date").value = new Date();
+
+      function validateForm() {
+        var name = document.forms["myForm"]["name"].value;
+        var email = document.forms["myForm"]["email"].value;
+        var issueType = document.forms["myForm"]["issueType"].value;
+
+        if (name == "") {
+          alert("Nome é um campo obrigatório");
+          document.getElementById("name").focus();
+          return false;
+        }
+
+        if (email == "") {
+          alert("Email é um campo obrigatório");
+          document.getElementById("email").focus();
+          return false;
+        }
+
+        if (issueType == "") {
+          alert("Classificação é um campo obrigatório");
+          document.getElementById("issueType").focus();
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
